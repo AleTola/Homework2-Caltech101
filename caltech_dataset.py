@@ -1,10 +1,12 @@
-from torchvision.datasets import VisionDataset
 
 from PIL import Image
 
 import os
 import os.path
 import sys
+
+from torchvision.datasets import VisionDataset
+
 
 
 def pil_loader(path):
@@ -21,12 +23,35 @@ class Caltech(VisionDataset):
         self.split = split # This defines the split you are going to use
                            # (split files are called 'train.txt' and 'test.txt')
 
+        # root = 'Caltech101/101_ObjectCategories'
+        self.root = root
+
+        self.list = []
+        even = 0
+
+        # tuples (image_path, label) 
+
+        with open(split + ".txt") as file_in:
+            for line in file_in:
+                # label = "accordion"
+                line = line.rstrip("\n")
+                label = line.split('/')[0]
+
+                if(label != "BACKGROUND_Google" and even%2 == 0):
+                    # image = "image_0002.jpg"
+                    image = line.split('/')[1]
+                    list.append((line, label))
+                even += 1
+
         '''
         - Here you should implement the logic for reading the splits files and accessing elements
         - If the RAM size allows it, it is faster to store all data in memory
+
         - PyTorch Dataset classes use indexes to read elements
+
         - You should provide a way for the __getitem__ method to access the image-label pair
           through the index
+          
         - Labels should start from 0, so for Caltech you will have lables 0...100 (excluding the background class) 
         '''
 
@@ -40,9 +65,14 @@ class Caltech(VisionDataset):
             tuple: (sample, target) where target is class_index of the target class.
         '''
 
-        image, label = ... # Provide a way to access image and label via index
-                           # Image should be a PIL Image
-                           # label can be int
+        # Provide a way to access image and label via index
+        # Image should be a PIL Image
+        # label can be int
+
+        dir = self.root + "/" + list[124][0]
+
+        image = Image.open(dir)
+        label = self.list[index][1]
 
         # Applies preprocessing when accessing the image
         if self.transform is not None:
@@ -55,5 +85,6 @@ class Caltech(VisionDataset):
         The __len__ method returns the length of the dataset
         It is mandatory, as this is used by several other components
         '''
-        length = ... # Provide a way to get the length (number of elements) of the dataset
+        # Provide a way to get the length (number of elements) of the dataset
+        length = len(self.list)
         return length
