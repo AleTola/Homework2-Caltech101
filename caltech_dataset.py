@@ -29,6 +29,9 @@ class Caltech(VisionDataset):
         self.list = []
         even = 0
 
+        d = os.getcwd() #Gets the current working directory
+        print(d)
+
         # tuples (image_path, label) 
 
         with open(split + ".txt") as file_in:
