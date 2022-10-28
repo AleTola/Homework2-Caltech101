@@ -25,6 +25,10 @@ class Caltech(VisionDataset):
 
         # root = 'Caltech101/101_ObjectCategories'
         self.root = root
+
+        self.labels = {}
+        num_label = 0
+
         self.list = []
 
         d = os.getcwd() #Gets the current working directory
@@ -38,10 +42,14 @@ class Caltech(VisionDataset):
                 line = line.rstrip("\n")
                 label = line.split('/')[0]
 
+                if label not in self.labels:
+                    self.labels[label] = num_label
+                    num_label += 1
+
                 if(label != "BACKGROUND_Google"):
                     # image = "image_0002.jpg"
                     image = line.split('/')[1]
-                    list.append((line, label))
+                    list.append((line, self.labels[label]))
     
 
         '''
