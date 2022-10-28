@@ -25,7 +25,6 @@ class Caltech(VisionDataset):
 
         # root = 'Caltech101/101_ObjectCategories'
         self.root = root
-
         self.list = []
 
         d = os.getcwd() #Gets the current working directory
@@ -33,7 +32,7 @@ class Caltech(VisionDataset):
 
         # tuples (image_path, label) 
 
-        with open(d + "/" + split + ".txt") as file_in:
+        with open(self.root + "/" + split + ".txt") as file_in:
             for line in file_in:
                 # label = "accordion"
                 line = line.rstrip("\n")
