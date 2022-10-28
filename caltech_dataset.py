@@ -49,7 +49,7 @@ class Caltech(VisionDataset):
                 if(label != "BACKGROUND_Google"):
                     # image = "image_0002.jpg"
                     image = line.split('/')[1]
-                    list.append((line, self.labels[label]))
+                    self.list.append((line, self.labels[label]))
     
 
         '''
