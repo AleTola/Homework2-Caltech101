@@ -27,7 +27,6 @@ class Caltech(VisionDataset):
         self.root = root
 
         self.list = []
-        even = 0
 
         d = os.getcwd() #Gets the current working directory
         print(d)
@@ -40,11 +39,11 @@ class Caltech(VisionDataset):
                 line = line.rstrip("\n")
                 label = line.split('/')[0]
 
-                if(label != "BACKGROUND_Google" and even%2 == 0):
+                if(label != "BACKGROUND_Google"):
                     # image = "image_0002.jpg"
                     image = line.split('/')[1]
                     list.append((line, label))
-                even += 1
+    
 
         '''
         - Here you should implement the logic for reading the splits files and accessing elements
