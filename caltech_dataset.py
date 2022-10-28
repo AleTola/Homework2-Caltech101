@@ -32,7 +32,7 @@ class Caltech(VisionDataset):
 
         # tuples (image_path, label) 
 
-        with open(self.root + "/" + split + ".txt") as file_in:
+        with open("Caltech101/" + split + ".txt") as file_in:
             for line in file_in:
                 # label = "accordion"
                 line = line.rstrip("\n")
