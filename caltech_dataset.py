@@ -78,7 +78,7 @@ class Caltech(VisionDataset):
         # Image should be a PIL Image
         # label can be int
 
-        dir = self.root + "/" + list[index][0]
+        dir = self.root + "/" + self.list[index][0]
 
         image = Image.open(dir)
         label = self.list[index][1]
