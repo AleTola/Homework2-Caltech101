@@ -25,6 +25,8 @@ class Caltech(VisionDataset):
 
         # root = 'Caltech101/101_ObjectCategories'
         self.root = root
+        self.transform = transform
+        self.target_transform = target_transform
 
         self.labels = {}
         num_label = 0
