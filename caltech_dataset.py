@@ -59,6 +59,7 @@ class Caltech(VisionDataset):
         dir = self.root + "/" + self.list[index][0]
 
         image = Image.open(dir)
+        image = image.convert("RGB")
         label = self.list[index][1]
 
         # Applies preprocessing when accessing the image
